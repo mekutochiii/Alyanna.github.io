@@ -21,6 +21,133 @@
             padding: 1.5rem;
         }
 
+        /* FORGET TRAP SCREEN */
+        .trap-container {
+            text-align: center;
+            background: rgba(255, 240, 245, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 3rem 2rem;
+            border-radius: 60px;
+            border: 4px solid white;
+            box-shadow: 0 20px 40px rgba(180, 70, 120, 0.3);
+            max-width: 500px;
+            width: 100%;
+            animation: popIn 0.5s ease;
+        }
+
+        .trap-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(130deg, #bb5780, #913e62);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 0 #ffe2f0;
+        }
+
+        .trap-question {
+            font-size: 1.8rem;
+            color: #b3406a;
+            margin-bottom: 2.5rem;
+            animation: shake 0.5s infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(2deg); }
+            75% { transform: rotate(-2deg); }
+        }
+
+        /* Fixed button container - YES left, NO right */
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+            margin: 0 auto;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .trap-btn {
+            padding: 1rem 3rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border: 4px solid white;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            flex: 0 1 auto;
+        }
+
+        .yes-btn {
+            background: #ffb3c6;
+            color: #913e62;
+        }
+
+        .yes-btn:hover {
+            background: #ff99bb;
+            transform: scale(1.05);
+            box-shadow: 0 0 30px #ff99bb;
+        }
+
+        .no-btn {
+            background: #ffe4f0;
+            color: #b3406a;
+        }
+
+        .no-btn:hover {
+            background: #ffd5e0;
+            transform: scale(1.05);
+        }
+
+        .trap-footer {
+            margin-top: 3rem;
+            color: #c06a90;
+            font-size: 1.1rem;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* New animations for NO button reactions */
+        @keyframes popReaction {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) translateY(20px);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2) translateY(-5px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes shakeNo {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+        }
+
+        @keyframes fallingEmoji {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
         /* ENVELOPE STYLES */
         .envelope-container {
             position: relative;
@@ -29,6 +156,7 @@
             margin: 0 auto;
             cursor: pointer;
             transition: transform 0.3s ease;
+            display: none;
         }
 
         .envelope-container:hover {
@@ -53,7 +181,6 @@
             overflow: hidden;
         }
 
-        /* envelope flap */
         .envelope-flap {
             position: absolute;
             top: 0;
@@ -113,7 +240,7 @@
             backdrop-filter: blur(5px);
         }
 
-        /* MAIN CARD (hidden initially) */
+        /* MAIN CARD */
         .monthsary-card {
             max-width: 650px;
             width: 100%;
@@ -139,7 +266,7 @@
             }
         }
 
-        /* IMPROVED CAROUSEL STYLES */
+        /* CAROUSEL STYLES */
         .carousel-container {
             background: linear-gradient(145deg, #fff2f9, #ffe4f0);
             border-radius: 36px;
@@ -237,7 +364,6 @@
             box-shadow: 0 20px 35px rgba(193, 85, 124, 0.4);
         }
 
-        /* Glowing effect on active slide */
         .carousel-slide.active::after {
             content: '';
             position: absolute;
@@ -257,7 +383,6 @@
             50% { opacity: 1; }
         }
 
-        /* Image caption that appears on hover */
         .slide-caption {
             position: absolute;
             bottom: 25px;
@@ -289,7 +414,6 @@
             100% { transform: translateX(-50%) scale(1); opacity: 1; }
         }
 
-        /* Carousel navigation */
         .carousel-nav {
             display: flex;
             justify-content: center;
@@ -426,15 +550,6 @@
             100% { box-shadow: 0 5px 15px rgba(193, 85, 124, 0.2); }
         }
 
-        /* Transition animations between slides */
-        .carousel-track.smooth-transition {
-            transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.1);
-        }
-
-        .carousel-track.bounce-transition {
-            transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
         .monthsary-message {
             text-align: center;
             margin: 1.5rem 0;
@@ -539,7 +654,6 @@
             50% { text-shadow: 0 0 20px #ff99bb, 0 0 30px #ffb3c6; }
         }
 
-        /* hidden audio player */
         #bgAudio {
             display: none;
         }
@@ -568,7 +682,6 @@
             50% { opacity: 1; }
         }
 
-        /* responsive */
         @media (max-width: 600px) {
             .monthsary-card { padding: 1.2rem; }
             .monthsary-message h1 { font-size: 2rem; }
@@ -581,6 +694,16 @@
                 font-size: 0.8rem;
                 padding: 6px 15px;
             }
+            .trap-title { font-size: 2rem; }
+            .trap-question { font-size: 1.5rem; }
+            .trap-btn { 
+                padding: 0.8rem 2rem; 
+                font-size: 1.2rem; 
+            }
+            .button-container {
+                gap: 1rem;
+                max-width: 300px;
+            }
         }
     </style>
 </head>
@@ -592,8 +715,21 @@
         Your browser does not support the audio element.
     </audio>
 
-    <!-- ENVELOPE (initially visible) -->
-    <div id="envelopeContainer" class="envelope-container" onclick="openEnvelope()">
+    <!-- DID YOU FORGET? TRAP SCREEN -->
+    <div id="trapScreen" class="trap-container">
+        <div class="trap-title">😈 WAIT JUST A MINUTE! 😈</div>
+        <div class="trap-question">"DID YOU FORGET OUR MONTHSARY?"</div>
+        
+        <div class="button-container">
+            <button class="trap-btn yes-btn" id="yesBtn" onclick="handleYes()">YES</button>
+            <button class="trap-btn no-btn" id="noBtn" onclick="handleNo()">NO</button>
+        </div>
+        
+        <div class="trap-footer">💕 Be honest... 💕</div>
+    </div>
+
+    <!-- ENVELOPE (initially hidden) -->
+    <div id="envelopeContainer" class="envelope-container">
         <div class="envelope" id="envelope">
             <div class="envelope-front">
                 <div class="envelope-flap"></div>
@@ -623,7 +759,7 @@
                     <!-- Slide 2 -->
                     <div class="carousel-slide" data-title="Another beautiful memory">
                         <img src="image/2.jpg" alt="Memory 2">
-                        <div class="slide-caption">💕 Sweet  💕</div>
+                        <div class="slide-caption">💕 Sweet 💕</div>
                     </div>
                     <!-- Slide 3 -->
                     <div class="carousel-slide" data-title="Forever with you">
@@ -649,9 +785,7 @@
                 <div class="slide-counter" id="slideCounter">1 / 5</div>
                 <button class="nav-arrow" id="nextBtn" onclick="nextSlide()">→</button>
             </div>
-            <div class="nav-dots" id="dotsContainer">
-                <!-- Dots will be added by JavaScript -->
-            </div>
+            <div class="nav-dots" id="dotsContainer"></div>
             <div class="carousel-caption">
                 <span>✨</span> swipe through our love story <span>✨</span>
             </div>
@@ -682,7 +816,124 @@
     </div>
 
     <script>
-        // Carousel variables
+        // ===== TRAP FUNCTIONS =====
+        function handleYes() {
+            // Hide trap screen with animation
+            const trapScreen = document.getElementById('trapScreen');
+            trapScreen.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            trapScreen.style.transform = 'scale(0.8)';
+            trapScreen.style.opacity = '0';
+            
+            setTimeout(() => {
+                trapScreen.style.display = 'none';
+                // Show envelope
+                document.getElementById('envelopeContainer').style.display = 'block';
+            }, 500);
+        }
+
+        // Array of funny reactions
+        const reactions = [
+            { text: "Are you sure?", emoji: "😢" },
+            { text: "Think again...", emoji: "🤨" },
+            { text: "That's cold!", emoji: "😤" },
+            { text: "Please? Pretty please?", emoji: "🥺" },
+            { text: "You're breaking my heart!", emoji: "😭" },
+            { text: "Wrong answer!", emoji: "🤪" },
+            { text: "I'm not mad, just disappointed", emoji: "😠" },
+            { text: "Last chance!", emoji: "😈" },
+            { text: "Don't do this to me...", emoji: "🥹" },
+            { text: "I know you really mean YES!", emoji: "😘" },
+            { text: "Are you CRAZY?!", emoji: "🤯" },
+            { text: "Just click YES already", emoji: "😏" },
+            { text: "You're killing me here", emoji: "💀" },
+            { text: "I didn't see that", emoji: "🙈" },
+            { text: "Rude!", emoji: "💢" },
+            { text: "One more try?", emoji: "🤞" },
+            { text: "That hurt my feelings", emoji: "🥴" },
+            { text: "The universe says YES", emoji: "✨" },
+            { text: "Stop playing hard to get", emoji: "🎭" },
+            { text: "Just do it!", emoji: "💝" }
+        ];
+
+        function createFallingEmojis() {
+            const emojis = ['💢', '😤', '💔', '😭', '🥺', '🤨', '😠', '💀', '🚫', '😈'];
+            
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.cssText = `
+                        position: fixed;
+                        left: ${Math.random() * 100}%;
+                        top: -20px;
+                        font-size: ${Math.random() * 30 + 20}px;
+                        opacity: 0.8;
+                        pointer-events: none;
+                        z-index: 9998;
+                        animation: fallingEmoji ${Math.random() * 2 + 2}s linear forwards;
+                        filter: drop-shadow(0 0 5px #ff99bb);
+                    `;
+                    document.body.appendChild(emoji);
+                    
+                    setTimeout(() => emoji.remove(), 3000);
+                }, i * 100);
+            }
+        }
+
+        function handleNo() {
+            const noBtn = document.getElementById('noBtn');
+            const btnRect = noBtn.getBoundingClientRect();
+            
+            // Get random reaction
+            const randomReaction = reactions[Math.floor(Math.random() * reactions.length)];
+            
+            // Create message with random reaction
+            const msg = document.createElement('div');
+            msg.textContent = `${randomReaction.emoji} ${randomReaction.text}`;
+            msg.style.cssText = `
+                position: fixed;
+                left: ${btnRect.left}px;
+                top: ${btnRect.top - 50}px;
+                background: white;
+                padding: 10px 25px;
+                border-radius: 40px;
+                font-size: 1.1rem;
+                color: #b3406a;
+                border: 2px solid #ffbfd6;
+                box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+                pointer-events: none;
+                animation: popReaction 0.5s ease-out forwards;
+                z-index: 9999;
+                white-space: nowrap;
+                font-weight: 500;
+                transform-origin: center;
+            `;
+            document.body.appendChild(msg);
+            
+            // Make the NO button shake
+            noBtn.style.animation = 'shakeNo 0.3s ease-in-out';
+            setTimeout(() => {
+                noBtn.style.animation = '';
+            }, 300);
+            
+            // Create falling emojis for extra drama
+            createFallingEmojis();
+            
+            // Remove message after animation
+            setTimeout(() => msg.remove(), 1500);
+        }
+
+        // Add animation for floating messages
+        const trapStyle = document.createElement('style');
+        trapStyle.textContent = `
+            @keyframes fadeUp {
+                0% { opacity: 1; transform: translateY(0); }
+                100% { opacity: 0; transform: translateY(-30px); }
+            }
+        `;
+        document.head.appendChild(trapStyle);
+
+        // ===== CAROUSEL CODE =====
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-slide');
         const track = document.getElementById('carouselTrack');
@@ -691,11 +942,8 @@
         
         let startX;
         let isDragging = false;
-        let startPosition = 0;
 
-        // Enhanced update function with animations
         function updateCarousel(animate = true) {
-            // Add animation class
             if (animate) {
                 track.classList.add('smooth-transition');
                 setTimeout(() => {
@@ -703,17 +951,14 @@
                 }, 600);
             }
             
-            // Update track position
             track.style.transform = `translateX(-${currentSlide * 100}%)`;
             
-            // Update counter with pop animation
             slideCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
             slideCounter.style.transform = 'scale(1.2)';
             setTimeout(() => {
                 slideCounter.style.transform = 'scale(1)';
             }, 200);
             
-            // Update active slide
             slides.forEach((slide, index) => {
                 if (index === currentSlide) {
                     slide.classList.add('active');
@@ -722,16 +967,10 @@
                 }
             });
             
-            // Update dots with animation
             const dots = document.querySelectorAll('.nav-dot');
             dots.forEach((dot, index) => {
                 if (index === currentSlide) {
                     dot.classList.add('active');
-                    // Create ripple effect
-                    dot.style.transform = 'scale(1.5)';
-                    setTimeout(() => {
-                        dot.style.transform = '';
-                    }, 400);
                 } else {
                     dot.classList.remove('active');
                 }
@@ -741,13 +980,13 @@
         function nextSlide() {
             currentSlide = (currentSlide + 1) % slides.length;
             updateCarousel(true);
-            createMiniHearts(); // Celebration effect
+            createMiniHearts();
         }
 
         function prevSlide() {
             currentSlide = (currentSlide - 1 + slides.length) % slides.length;
             updateCarousel(true);
-            createMiniHearts(); // Celebration effect
+            createMiniHearts();
         }
 
         function goToSlide(index) {
@@ -758,7 +997,6 @@
             }
         }
 
-        // Create mini hearts when changing slides
         function createMiniHearts() {
             for (let i = 0; i < 5; i++) {
                 setTimeout(() => {
@@ -781,21 +1019,17 @@
             }
         }
 
-        // Create dots with hover effect
         function createDots() {
             for (let i = 0; i < slides.length; i++) {
                 const dot = document.createElement('div');
                 dot.className = `nav-dot ${i === 0 ? 'active' : ''}`;
                 dot.onclick = () => goToSlide(i);
-                
-                // Add hover tooltip
                 dot.setAttribute('title', `Memory ${i + 1}`);
-                
                 dotsContainer.appendChild(dot);
             }
         }
 
-        // Touch events for swiping with momentum
+        // Touch events
         track.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
             isDragging = true;
@@ -809,7 +1043,6 @@
             const currentX = e.touches[0].clientX;
             const diff = currentX - startX;
             
-            // Limit drag distance for better feel
             const dragPercent = diff / track.offsetWidth;
             const maxDrag = 0.3;
             
@@ -825,15 +1058,13 @@
             const endX = e.changedTouches[0].clientX;
             const diff = endX - startX;
             
-            // Determine swipe direction with threshold
             if (Math.abs(diff) > 50) {
                 if (diff > 0) {
-                    prevSlide(); // Swipe right
+                    prevSlide();
                 } else {
-                    nextSlide(); // Swipe left
+                    nextSlide();
                 }
             } else {
-                // Snap back to current slide
                 updateCarousel(true);
             }
         });
@@ -916,55 +1147,26 @@
         document.head.appendChild(style);
 
         function openEnvelope() {
-            // Get elements
             const envelope = document.getElementById('envelopeContainer');
             const mainCard = document.getElementById('mainCard');
             const audio = document.getElementById('bgAudio');
             
-            // Add open class to envelope for animation
             envelope.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             envelope.style.transform = 'scale(0.8)';
             envelope.style.opacity = '0';
             
-            // Show main card with animation
             setTimeout(() => {
                 envelope.style.display = 'none';
                 mainCard.style.display = 'block';
                 
-                // Trigger audio play
                 audio.play().catch(e => {
                     console.log("Audio autoplay failed:", e);
-                    const playBtn = document.createElement('button');
-                    playBtn.innerHTML = '🔊 Click to Play Music';
-                    playBtn.style.cssText = `
-                        position: fixed;
-                        bottom: 20px;
-                        right: 20px;
-                        background: #ffb3c6;
-                        border: none;
-                        padding: 12px 20px;
-                        border-radius: 40px;
-                        color: #913e62;
-                        font-weight: bold;
-                        cursor: pointer;
-                        border: 2px solid white;
-                        z-index: 1000;
-                        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-                        animation: pulse 2s infinite;
-                    `;
-                    playBtn.onclick = function() {
-                        audio.play();
-                        this.remove();
-                    };
-                    document.body.appendChild(playBtn);
                 });
                 
-                // Add floating hearts effect
                 createHearts();
             }, 300);
         }
 
-        // Enhanced floating hearts animation
         function createHearts() {
             const heartTypes = ['❤️', '💕', '💗', '💓', '💖'];
             for (let i = 0; i < 30; i++) {
@@ -1010,6 +1212,9 @@
             }
         `;
         document.head.appendChild(heartStyle);
+
+        // Make envelope clickable
+        document.querySelector('.envelope-container').onclick = openEnvelope;
     </script>
 </body>
 </html>
